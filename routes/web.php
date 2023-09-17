@@ -23,15 +23,20 @@ Route::get('/', function () {
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', function(){
-    return view('register.index');
-});
-Route::post('/register', [RegisterController::class, 'store']);
+Route::resource('/register', RegisterController::class)->except('');
 
-Route::group(['middleware'=>['auth']], function(){
+
+// Route::post('/register', [RegisterController::class, 'store']);
+// Route::get('/register', [RegisterController::class, 'index']);
+
+Route::group(['middleware'=>['isAdmin']], function(){
     Route::resource('/dashboard', DashboardController::class);
+    Route::get('/admin/user', [StudentController::class, 'index']);
+    Route::post('/admin/user', [StudentController::class, 'store']);
+});
+
+Route::group(['middleware'=>['isStudent']], function(){
     Route::get('/user', [StudentController::class, 'index']);
-    Route::post('/user', [StudentController::class, 'store']);
 });
 
 

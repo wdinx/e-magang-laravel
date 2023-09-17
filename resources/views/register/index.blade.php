@@ -44,7 +44,41 @@
                                 <div class="p-2 mt-4">
                                     <form action="/register" method="POST">
                                         @csrf
-                                        <div class="form-floating">
+                                        <label for="image" class="form-label">Post Image</label>
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        <input class="form-control  @error('image') is-invalid @enderror" type="file"
+                                            id="image" name="image" onchange="previewImage()">
+                                        @error('image')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        <div class="form-floating mb-2">
+                                            <div>
+                                                <label for="start_date" class="form-label">Tanggal Mulai</label>
+                                                <input type="date" class="form-control" id="start_date"
+                                                    name="start_date">
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <div>
+                                                <label for="end_date" class="form-label">Tanggal Selesai</label>
+                                                <input type="date" class="form-control" id="end_date" name="end_date">
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" name="nik"
+                                                class="form-control rounded-top @error('nik') is-invalid @enderror"
+                                                id="nik" placeholder="Nomor Induk Kependudukan" required
+                                                value="{{ old('nik') }}">
+                                            <label for="nik">Nomor Induk Kependudukan</label>
+                                            @error('nik')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-2">
                                             <input type="text" name="name"
                                                 class="form-control rounded-top @error('name') is-invalid @enderror"
                                                 id="name" placeholder="name" required value="{{ old('name') }}">
@@ -55,24 +89,109 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="form-floating">
-                                            <input type="text" name="username"
-                                                class="form-control rounded-top @error('username') is-invalid @enderror"
-                                                id="username" placeholder="username" required
-                                                value="{{ old('username') }}">
-                                            <label for="username">Username</label>
-                                            @error('username')
+                                        <div class="form-floating mb-2">
+                                            <input type="text" name="address"
+                                                class="form-control rounded-top @error('address') is-invalid @enderror"
+                                                id="address" placeholder="address" required value="{{ old('address') }}">
+                                            <label for="address">Alamat</label>
+                                            @error('address')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-2">
+                                            <div>
+                                                <label for="birth_date" class="form-label">Tanggal Lahir</label>
+                                                <input type="date" class="form-control" id="birth_date"
+                                                    name="birth_date">
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="email" name="email"
+                                                class="form-control rounded-top @error('email') is-invalid @enderror"
+                                                id="email" placeholder="email" required value="{{ old('email') }}">
+                                            <label for="email">Email</label>
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" name="school"
+                                                class="form-control rounded-top @error('school') is-invalid @enderror"
+                                                id="school" placeholder="school" required value="{{ old('school') }}">
+                                            <label for="school">School</label>
+                                            @error('school')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="religion">Agama</label>
+                                                <select class="form-select" id="religion" name="religion">
+                                                    <option selected value="laki-laki">Islam</option>
+                                                    <option value="perempuan">Kristen</option>
+                                                    <option value="perempuan">Katolik</option>
+                                                    <option value="perempuan">Hindu</option>
+                                                    <option value="perempuan">Budha</option>
+                                                    <option value="perempuan">Lainnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="number" name="number_phone"
+                                                class="form-control rounded-top @error('number_phone') is-invalid @enderror"
+                                                id="number_phone" placeholder="number_phone" required
+                                                value="{{ old('number_phone') }}">
+                                            <label for="number_phone">No. Telpon</label>
+                                            @error('number_phone')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="gender">Jenis Kelamin</label>
+                                                <select class="form-select" id="gender" name="gender">
+                                                    <option selected value="laki-laki">Laki-Laki</option>
+                                                    <option value="perempuan">Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
                                             <input type="password" name="password"
                                                 class="form-control rounded-bottom @error('password') is-invalid @enderror"
                                                 id="password" placeholder="Password" required>
                                             <label for="password">Password</label>
                                             @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="department_id">Bagian</label>
+                                                <select class="form-select" id="department_id" name="department_id">
+                                                    @foreach ($departments as $department)
+                                                        <option value="{{ $department->id }}">
+                                                            {{ $department->department_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" name="jurusan"
+                                                class="form-control rounded-top @error('jurusan') is-invalid @enderror"
+                                                id="jurusan" placeholder="jurusan" required
+                                                value="{{ old('jurusan') }}">
+                                            <label for="jurusan">Jurusan</label>
+                                            @error('jurusan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -119,4 +238,19 @@
         </footer>
         <!-- end Footer -->
     </div>
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 @endsection

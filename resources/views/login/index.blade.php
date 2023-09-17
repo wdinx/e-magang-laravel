@@ -79,13 +79,13 @@
                                             <form action="/" method="POST">
                                                 @csrf
                                                 <div class="mb-3">
-                                                    <label for="username" class="form-label">Username</label>
+                                                    <label for="email" class="form-label">Email</label>
                                                     <input type="text"
-                                                        class="form-control @error('username') is-invalid @enderror"
-                                                        id="username" name="username" placeholder="Enter username"
-                                                        autofocus required value="{{ old('username') }}">
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        id="email" name="email" placeholder="Enter email" autofocus
+                                                        required value="{{ old('email') }}">
                                                 </div>
-                                                @error('username')
+                                                @error('email')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>

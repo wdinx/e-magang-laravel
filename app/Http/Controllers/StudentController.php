@@ -13,7 +13,7 @@ class StudentController extends Controller
         $schools = DB::table('schools')->get();
         $students = DB::table('students')->get();
         return view('dashboard.admin.user', [
-            'schools' => $schools,
+            'schools' => School::all(),
             'students' => Student::all()
         ]);
     }
