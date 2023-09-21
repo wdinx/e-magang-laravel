@@ -134,11 +134,11 @@
                                                 <label class="input-group-text" for="religion">Agama</label>
                                                 <select class="form-select" id="religion" name="religion">
                                                     <option selected value="laki-laki">Islam</option>
-                                                    <option value="perempuan">Kristen</option>
-                                                    <option value="perempuan">Katolik</option>
-                                                    <option value="perempuan">Hindu</option>
-                                                    <option value="perempuan">Budha</option>
-                                                    <option value="perempuan">Lainnya</option>
+                                                    <option value="kristen">Kristen</option>
+                                                    <option value="katolik">Katolik</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
+                                                    <option value="lainnya">Lainnya</option>
                                                 </select>
                                             </div>
                                         </div>
